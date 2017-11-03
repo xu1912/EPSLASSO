@@ -1,21 +1,21 @@
-#' This function tests the significance of all the predictors given the solution of beta, sigma from EPSLASSO.
-#'
-#' @param A Matrix of predictors. Required.
-#' @param Y Trait values. Required.
-#' @param c1 Right censored point. Required.
-#' @param c2 Left censored point. Required.
-#' @param beta_e A sequence of beta_i values estimated from epsLassoSolver. Required.
-#' @param sigma Sigma estimated from epsLassoSolver. Required.
-#' @param m_w Methods used to estimate W matrix. Default is "lso" for LASSO solution using glmnet. Another method is "dzg" for Danzig-type estimator.
-#' @param paral Parallel computing indicator. Default is FALSE, not using parallel.
-#' @param paral_n Number of cores that are used for parallel computing. Default is NULL. When paral is TRUE, default is the number of system available cores - 1.
-#' @param resol The refining step when m_w="dzg". Default is 1.3. A large resol results in faster convergence speed, but rough solutions.
-#' @param tol The convergence threshold for refining when m_w="dzg". Default is 0.001.
-#' @param maxTry The maximum refining steps when m_w="dzg". Default is 10.
-#' @param verbose Print debugging info or not.
-#' @import glmnet
+# This function tests the significance of all the predictors given the solution of beta, sigma from EPSLASSO.
+#
+# @param A Matrix of predictors. Required.
+# @param Y Trait values. Required.
+# @param c1 Right censored point. Required.
+# @param c2 Left censored point. Required.
+# @param beta_e A sequence of beta_i values estimated from epsLassoSolver. Required.
+# @param sigma Sigma estimated from epsLassoSolver. Required.
+# @param m_w Methods used to estimate W matrix. Default is "lso" for LASSO solution using glmnet. Another method is "dzg" for Danzig-type estimator.
+# @param paral Parallel computing indicator. Default is FALSE, not using parallel.
+# @param paral_n Number of cores that are used for parallel computing. Default is NULL. When paral is TRUE, default is the number of system available cores - 1.
+# @param resol The refining step when m_w="dzg". Default is 1.3. A large resol results in faster convergence speed, but rough solutions.
+# @param tol The convergence threshold for refining when m_w="dzg". Default is 0.001.
+# @param maxTry The maximum refining steps when m_w="dzg". Default is 10.
+# @param verbose Print debugging info or not.
+# @import glmnet
 #' @import MASS foreach
-#' 
+# 
 
 
 trunAllTest_parallel=function(A, Y, c1, c2, beta_e, sigma, m_w="lso", paral=FALSE, paral_n=NULL, resol=1.3, tol=1e-3, maxTry=10, verbose = TRUE){

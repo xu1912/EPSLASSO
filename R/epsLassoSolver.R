@@ -1,14 +1,14 @@
-#' This function solves EPSLASSO with an intial guess of beta and sigma. 
-#' 
-#' @param A Matrix of predictors. Required.
-#' @param Y Trait values. Required.
-#' @param c1 Right censored point. Required.
-#' @param c2 Left censored point. Required.
-#' @param lambda Penalized parameter (lambda>0) controlling the sparsity.
-#' @param sigma Initial estimate of sigma.
-#' @param maxIter Maximum iteration number, default 1000.
-#' @param verbose Print debugging info or not.
-#' 
+## This function solves EPSLASSO with an initial guess of beta and sigma. 
+## 
+## @param A Matrix of predictors. Required.
+## @param Y Trait values. Required.
+## @param c1 Right censored point. Required.
+## @param c2 Left censored point. Required.
+## @param lambda Penalized parameter (lambda>0) controlling the sparsity.
+## @param sigma Initial estimate of sigma.
+## @param maxIter Maximum iteration number, default 1000.
+## @param verbose Print debugging info or not.
+## 
 
 
 epsLassoSolver=function(A, Y, c1, c2, lambda, sigma, maxIter=1000, verbose=FALSE){

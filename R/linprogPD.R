@@ -1,13 +1,6 @@
-#' This function solves 
-#'  ## min ||x||_1   subject to  ||Ax-b||_\\infty <= epsilon
-#'  ## Adapted from Matlab code for Dantzig Selector by J. Romberg
-#' @param x0 Initial guess of X. Required.
-#' @param A Matrix A. Required.
-#' @param b Vector b. Required.
-#' @param epsilon Regularization parameter epsilon. Required.
-#' @param pdtol Convergence threshold. Default is 0.001.
-#' @param pdmaxiter Maximum iteration number. Default is 50.
-
+## This function solves 
+##   min ||x||_1   subject to  ||Ax-b||_\\infty <= epsilon
+##   Adapted from Matlab code for Dantzig Selector by J. Romberg
 
 linprogPD <- function(x0, A, b, epsilon, pdtol=1e-3, pdmaxiter=50) {
   
