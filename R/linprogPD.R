@@ -7,7 +7,7 @@
 #' @param epsilon Regularization parameter epsilon. Required.
 #' @param pdtol Convergence threshold. Default is 0.001.
 #' @param pdmaxiter Maximum iteration number. Default is 50.
-#' @export
+
 
 linprogPD <- function(x0, A, b, epsilon, pdtol=1e-3, pdmaxiter=50) {
   

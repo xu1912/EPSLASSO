@@ -7,7 +7,7 @@
 #' @param sigma Estimate of sigma. Required.
 #' @param tol Convergence threshold for approximation procedure. Default is 0.001.
 #' @param maxIter Maximum iteration number for approximation procedure. Default is 1000.
-#' @export
+#' 
 
 
 epsLeastR=function(A, y, z, c1, c2, sigma, maxIter=1000, tol=1e-3){
