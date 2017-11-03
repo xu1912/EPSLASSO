@@ -44,15 +44,9 @@ p1=0.2
 p2=0.2
 p=100
 nc=10
-eff=0.2
+eff=0.5
 
-beta_eff=rep(0,p)
-if(nc>0){
-       nc_p=seq(from=1,by=10,length=nc)
-       beta_eff[nc_p]=rep(eff,nc)
-}else{
-       nc_p=c()
-}
+beta_eff=c(rep(eff,nc),rep(0,p-nc))
 
 cov_m=diag(p)
 X_b=rmvnorm(n,mean=c(rep(1,p/2),rep(2,p/2)), sigma=cov_m)
