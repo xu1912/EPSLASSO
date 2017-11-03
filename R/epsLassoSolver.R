@@ -8,7 +8,7 @@
 #' @param sigma Initial estimate of sigma.
 #' @param maxIter Maximum iteration number, default 1000.
 #' @param verbose Print debugging info or not.
-#' @export
+#' 
 
 
 epsLassoSolver=function(A, Y, c1, c2, lambda, sigma, maxIter=1000, verbose=FALSE){

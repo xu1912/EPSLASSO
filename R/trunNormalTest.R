@@ -15,7 +15,7 @@
 #' @param verbose Print debugging info or not.
 #' @import glmnet
 #' @import MASS foreach
-#' @export
+#' 
 
 
 trunAllTest_parallel=function(A, Y, c1, c2, beta_e, sigma, m_w="lso", paral=FALSE, paral_n=NULL, resol=1.3, tol=1e-3, maxTry=10, verbose = TRUE){
