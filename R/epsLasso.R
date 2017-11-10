@@ -7,6 +7,7 @@
 #' @param c2 Left censored point. Required.
 #' @param lam0 A sequence of lambda values. Default is the sequence used in GLMNET.
 #' @param m_w Methods used to estimate W matrix. Default is "lso" for LASSO solution using glmnet. Another method is "dzg" for Danzig-type estimator.
+#' @param scal Scale matrix X or not. Default is TRUE.
 #' @param paral Parallel computing indicator. Default is FALSE, not using parallel.
 #' @param paral_n Number of cores that are used for parallel computing. Default is NULL. When paral is TRUE, default is the number of system available cores - 1.
 #' @param resol The refining step when m_w="dzg". Default is 1.3. A large resol results in faster convergence speed, but rough solutions.
@@ -45,11 +46,14 @@
 #' res
 #'
 
-epsLasso=function(X, Y, c1, c2, lam0=NULL, m_w="lso", paral=FALSE, paral_n=NULL, resol=1.3, tol=1e-3, maxTry=10, verbose = TRUE){
+epsLasso=function(X, Y, c1, c2, lam0=NULL, m_w="lso", scal=TRUE, paral=FALSE, paral_n=NULL, resol=1.3, tol=1e-3, maxTry=10, verbose = TRUE){
 
 	try(if (missing(X) || missing(Y) || missing(c1) || missing(c2) ) stop('\n Inputs: X, Y, c1 and c2 should be specified!\n'))
-
-	A=scale(X);
+	
+	if(scal){
+		A=scale(X);
+	}
+	
 	y_mu=mean(Y);
 	Y=Y-y_mu;
 	c1=c1-y_mu;

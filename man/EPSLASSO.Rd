@@ -4,9 +4,9 @@
 \alias{epsLasso}
 \title{Test for high-dimensional sparse regression for extreme phenotype sampling data.}
 \usage{
-epsLasso(X, Y, c1, c2, lam0 = NULL, m_w = "lso", paral = FALSE,
-  paral_n = NULL, resol = 1.3, tol = 0.001, maxTry = 10,
-  verbose = TRUE)
+epsLasso(X, Y, c1, c2, lam0 = NULL, m_w = "lso", scal = TRUE,
+  paral = FALSE, paral_n = NULL, resol = 1.3, tol = 0.001,
+  maxTry = 10, verbose = TRUE)
 }
 \arguments{
 \item{X}{Matrix of predictors. Required.}
@@ -20,6 +20,8 @@ epsLasso(X, Y, c1, c2, lam0 = NULL, m_w = "lso", paral = FALSE,
 \item{lam0}{A sequence of lambda values. Default is the sequence used in GLMNET.}
 
 \item{m_w}{Methods used to estimate W matrix. Default is "lso" for LASSO solution using glmnet. Another method is "dzg" for Danzig-type estimator.}
+
+\item{scal}{Scale matrix X or not. Default is TRUE.}
 
 \item{paral}{Parallel computing indicator. Default is FALSE, not using parallel.}
 
