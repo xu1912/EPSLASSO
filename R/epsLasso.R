@@ -52,6 +52,8 @@ epsLasso=function(X, Y, c1, c2, lam0=NULL, m_w="lso", scal=TRUE, paral=FALSE, pa
 	
 	if(scal){
 		A=scale(X);
+	}else{
+		A=X
 	}
 	
 	y_mu=mean(Y);
