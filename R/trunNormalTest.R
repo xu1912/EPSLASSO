@@ -163,13 +163,15 @@ trunAllTest_parallel=function(A, Y, c1, c2, beta_e, sigma, m_w="lso", paral=FALS
 			xp = round(p/10);
 			tm=sqrt(log(p)/nX)
 			for (i in 1:p) {
-					if ((i %% xp)==0){
-							xperc = xperc+10;
-							if (verbose) {
-									print(paste(xperc,"% done",sep=""));
-							}
+					if(xp>0){
+						if ((i %% xp)==0){
+								xperc = xperc+10;
+								if (verbose & xperc <=100) {
+										print(paste(xperc,"% done",sep=""));
+								}
+						}
 					}
-										
+					
 					## Null model
 					beta_i=beta_e
 					beta_i[i]=0
@@ -194,7 +196,7 @@ trunAllTest_parallel=function(A, Y, c1, c2, beta_e, sigma, m_w="lso", paral=FALS
 						lb  = matrix(0,nrow = nX, ncol=p-1)
 						for(k in 1:nX){
 								la[k]=(Y[k]-A[k,]%*%beta_i)*A[k,i]/sigma^2-mv[k]*A[k,i]/sigma
-								lb[k,]=(Y[k]-A[k,]%*%beta_i)*A[k,-i]/sigma^2-mv[k]*A[k,-i]/sigma
+								lb[k,]=as.vector(Y[k]-A[k,]%*%beta_i)*A[k,-i]/sigma^2-mv[k]*A[k,-i]/sigma
 
 						}
 					
