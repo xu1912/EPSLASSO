@@ -5,4 +5,5 @@ An R package for regression analysis of data from extreme sampling. Both of the 
 
 ## Installation
 library("devtools")
+
 install.github("xu1912/EPSLASSO")
