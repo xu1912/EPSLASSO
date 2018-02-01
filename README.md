@@ -4,7 +4,7 @@ An R package for regression analysis of data from extreme sampling. Both of the 
 
 
 ## Contact
-Chao, Xu    cxu2@tulane.edu
+Chao Xu    cxu2@tulane.edu
 
 ## Installation
 library("devtools")
