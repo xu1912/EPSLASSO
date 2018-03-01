@@ -36,9 +36,11 @@ epsLassoSolver=function(A, Y, c1, c2, lambda, sigma, maxIter=1000, verbose=FALSE
 		f12<-f1-f2
 		Y_Ax<-(Y-Ax)
 		F12<-F2 + F1
-		sigma = tryCatch(uniroot(function(sigmaT) sum(-1/sigmaT+(Y_Ax)^2/sigmaT^3+(((c2-Ax)/sigmaT^2)*f2-((c1-Ax)/sigmaT^2)*f1)/F12),c(sigma/500,500*sigma))$root, 
-				error=function(e){if(verbose){print("Warning")};sigma=sigma_old})
-
+		#sigma = tryCatch(uniroot(function(sigmaT) sum(-1/sigmaT+(Y_Ax)^2/sigmaT^3+(((c2-Ax)/sigmaT^2)*f2-((c1-Ax)/sigmaT^2)*f1)/F12),c(sigma/500,500*sigma))$root, 
+		#		error=function(e){if(verbose){print("Warning")};sigma=sigma_old})
+		bb=-sum(((c2-Ax)*f2-(c1-Ax)*f1)/F12)
+		cc=-sum(Y_Ax^2)
+		sigma=(-bb+sqrt(bb^2-4*cc*nX))/(2*nX)
 		#sigma_tr[step]=sigma
 		if(sigma==sigma_old){
 			break;
