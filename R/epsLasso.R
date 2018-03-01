@@ -78,8 +78,8 @@ epsLasso=function(X, Y, c1, c2, lam0=NULL, m_w="lso", scal=TRUE, paral=FALSE, pa
 	##initial guess from glmnet
 	if(F){
 		rlasso=cv.glmnet(A,Y,intercept=F,standardize = F)
-        rlasso=glmnet(A,Y,lambda=rlasso$lambda.min,intercept=F,standardize = F)
-        f_idx_glmnet=rlasso$beta@i+1
+        	rlasso=glmnet(A,Y,lambda=rlasso$lambda.min,intercept=F,standardize = F)
+        	f_idx_glmnet=rlasso$beta@i+1
 		cep_fit=lm_eps(Y~A[,f_idx_glmnet]-1,c1,c2)
 	}
 	##initial guess from square-root lasso
@@ -88,9 +88,9 @@ epsLasso=function(X, Y, c1, c2, lam0=NULL, m_w="lso", scal=TRUE, paral=FALSE, pa
 		outLas <- flare::slim(A,Y,lambda=c(lambda_e),method="lq",q=2,verbose=FALSE);
 		beta_e=outLas$beta
 		f_idx_las=which(beta_e!=0)
-		if(length(f_idx_las)<nX & length(f_idx_las)>0){
-			cep_fit=lm_eps(Y~A[,f_idx_las]-1,c1,c2)
-			sigma_i=max(sqrt(sum((Y-A%*%outLas$beta)^2)/nX),cep_fit$sigma)
+		if(length(f_idx_las)<(nX-1) & length(f_idx_las)>0){
+			cep_fit=tryCatch(lm_eps(Y~A[,f_idx_las]-1,c1,c2)$sigma, error=function(e){0})
+			sigma_i=max(sqrt(sum((Y-A%*%outLas$beta)^2)/nX), cep_fit)
 		}else{
 			sigma_i=sqrt(sum((Y-A%*%outLas$beta)^2)/nX)
 		}
@@ -181,10 +181,12 @@ epsLasso=function(X, Y, c1, c2, lam0=NULL, m_w="lso", scal=TRUE, paral=FALSE, pa
 		beta_e=res_eps$beta
 		sigma_e=res_eps$sigma
 		lambda_e=res_eps$lambda
-		if(sum(beta_e!=0)>0 & sum(beta_e!=0)<nX){
-			eps_fit=lm_eps(Y~A[,which(beta_e!=0)]-1,c1,c2)
-			beta_e[which(beta_e!=0)]=eps_fit$coef
-			sigma_e=eps_fit$sigma
+		if(sum(beta_e!=0)>0 & sum(beta_e!=0)<(nX-1)){
+			eps_fit=tryCatch(lm_eps(Y~A[,which(beta_e!=0)]-1,c1,c2), error=function(e){NULL})
+			if(!is.na(eps_fit)){
+				beta_e[which(beta_e!=0)]=eps_fit$coef
+				sigma_e=eps_fit$sigma
+			}
 		}
     }else{
 		out_eps=list()
@@ -205,10 +207,12 @@ epsLasso=function(X, Y, c1, c2, lam0=NULL, m_w="lso", scal=TRUE, paral=FALSE, pa
 		beta_e=out_eps[[which(ebic==min(ebic))[1]]]$beta
 		sigma_e=out_eps[[which(ebic==min(ebic))[1]]]$sigma
 		lambda_e=out_eps[[which(ebic==min(ebic))[1]]]$lambda
-		if(sum(beta_e!=0)>0 & sum(beta_e!=0)<nX){
-			eps_fit=lm_eps(Y~A[,which(beta_e!=0)]-1,c1,c2)
-			beta_e[which(beta_e!=0)]=eps_fit$coef
-			sigma_e=eps_fit$sigma
+		if(sum(beta_e!=0)>0 & sum(beta_e!=0)<(nX-1)){
+			eps_fit=tryCatch(lm_eps(Y~A[,which(beta_e!=0)]-1,c1,c2), error=function(e){NULL})
+			if(!is.na(eps_fit)){
+				beta_e[which(beta_e!=0)]=eps_fit$coef
+				sigma_e=eps_fit$sigma
+			}
 		}
 	}
 
