@@ -8,6 +8,7 @@ Chao Xu    cxu2@tulane.edu
 
 ## Installation
 If the R package devtools can be installed, then try:
+
 library("devtools")
 install_github("xu1912/EPSLASSO")
 
