@@ -13,7 +13,7 @@ library("devtools")
 
 install_github("xu1912/EPSLASSO")
 
-If devtools not available, then have to download the source code and install local using zip (for Windows) or tar.gz (for Linux) file.
+If devtools is not available, then have to download the source code and install local using zip (for Windows) or tar.gz (for Linux) file.
 Before the installation, check the required packages:
 
       glmnet(>= 2.0-5),
