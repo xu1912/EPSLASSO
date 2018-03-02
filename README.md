@@ -28,4 +28,4 @@ Before the installation, check the required packages:
       
       mvtnorm (>= 1.0-3),
       
-      methods (>= 3.3).
+      methods (>= 3.2).
