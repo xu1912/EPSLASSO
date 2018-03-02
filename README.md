@@ -9,5 +9,5 @@ Chao Xu    cxu2@tulane.edu
 ## Installation
 library("devtools")
 
-install.github("xu1912/EPSLASSO")
+install_github("xu1912/EPSLASSO")
 
