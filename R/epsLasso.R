@@ -50,7 +50,8 @@
 epsLasso=function(X, Y, c1, c2, lam0=NULL, m_w="lso", scal.x=TRUE, center.y=TRUE, paral=FALSE, paral_n=NULL, resol=1.3, tol=1e-3, maxTry=10, verbose = TRUE){
 
 	try(if (missing(X) || missing(Y) || missing(c1) || missing(c2) ) stop('\n Inputs: X, Y, c1 and c2 should be specified!\n'))
-	
+
+	X=as.matrix(X)	
 	if(scal.x){
 		A=scale(X);
 	}else{
