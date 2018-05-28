@@ -50,8 +50,7 @@
 epsLasso=function(X, Y, c1, c2, lam0=NULL, m_w="lso", scal.x=TRUE, center.y=TRUE, paral=FALSE, paral_n=NULL, resol=1.3, tol=1e-3, maxTry=10, verbose = TRUE){
 
 	try(if (missing(X) || missing(Y) || missing(c1) || missing(c2) ) stop('\n Inputs: X, Y, c1 and c2 should be specified!\n'))
-
-	X=as.matrix(X)	
+	
 	if(scal.x){
 		A=scale(X);
 	}else{
@@ -166,7 +165,7 @@ epsLasso=function(X, Y, c1, c2, lam0=NULL, m_w="lso", scal.x=TRUE, center.y=TRUE
 		}
 		doParallel::registerDoParallel(cl)
 		ebic=foreach(i = 1:length(lam0), .combine=c, .export=c('epsLassoSolver','epsLeastR','linprogPD'), .packages='MASS') %dopar% {
-			#sigma=cep_fit$sigma
+			nX=nrow(A)
 			out_eps=epsLassoSolver(A,Y,c1,c2,lambda=lam0[i],sigma_i)
 			Ax=A %*% out_eps$beta
 			Axy=Ax-Y;
@@ -187,7 +186,7 @@ epsLasso=function(X, Y, c1, c2, lam0=NULL, m_w="lso", scal.x=TRUE, center.y=TRUE
 		lambda_e=res_eps$lambda
 		if(sum(beta_e!=0)>0 & sum(beta_e!=0)<(nX-1)){
 			eps_fit=tryCatch(lm_eps(Y~A[,which(beta_e!=0)]-1,c1,c2), error=function(e){NULL})
-			if(!is.null(eps_fit)){
+			if(!is.na(eps_fit)){
 				beta_e[which(beta_e!=0)]=eps_fit$coef
 				sigma_e=eps_fit$sigma
 			}
@@ -196,8 +195,7 @@ epsLasso=function(X, Y, c1, c2, lam0=NULL, m_w="lso", scal.x=TRUE, center.y=TRUE
 		out_eps=list()
 		ebic=c()
 		for(i in 1:length(lam0)){
-				sigma=cep_fit$sigma
-				out_eps[[i]]=epsLassoSolver(A,Y,c1,c2,lambda=lam0[i],sigma)
+				out_eps[[i]]=epsLassoSolver(A,Y,c1,c2,lambda=lam0[i],sigma_i)
 				Ax=A %*% out_eps[[i]]$beta
 				Axy=Ax-Y;
 				a1<-(c1-Ax)/out_eps[[i]]$sigma
@@ -206,14 +204,14 @@ epsLasso=function(X, Y, c1, c2, lam0=NULL, m_w="lso", scal.x=TRUE, center.y=TRUE
 				F2<-pnorm(a2)
 				F12<-F2 + F1
 				K=sum(abs(out_eps[[i]]$beta)>0)
-				ebic[i]=2*(nX/2*log(2*pi*out_eps[[i]]$sigma^2) + sum(Axy^2)/(2*out_eps[[i]]$sigma^2) + sum(log(F12)))+K*(pX^(1/3))
+				ebic[i]=2*(nX/2*log(2*pi*out_eps[[i]]$sigma^2) + sum(Axy^2)/(2*out_eps[[i]]$sigma^2) + sum(log(F12)))+K*log(nX)
 		}
 		beta_e=out_eps[[which(ebic==min(ebic))[1]]]$beta
 		sigma_e=out_eps[[which(ebic==min(ebic))[1]]]$sigma
 		lambda_e=out_eps[[which(ebic==min(ebic))[1]]]$lambda
 		if(sum(beta_e!=0)>0 & sum(beta_e!=0)<(nX-1)){
 			eps_fit=tryCatch(lm_eps(Y~A[,which(beta_e!=0)]-1,c1,c2), error=function(e){NULL})
-			if(!is.null(eps_fit)){
+			if(!is.na(eps_fit)){
 				beta_e[which(beta_e!=0)]=eps_fit$coef
 				sigma_e=eps_fit$sigma
 			}

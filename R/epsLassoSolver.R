@@ -14,6 +14,7 @@
 epsLassoSolver=function(A, Y, c1, c2, lambda, sigma, maxIter=1000, verbose=FALSE){
 	
 	pX=ncol(A)
+	nX=nrow(A)
 	x=matrix(0,pX,1);
 	sigma=as.numeric(sigma)
 	esp_beta=1
