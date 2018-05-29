@@ -1,6 +1,6 @@
 #' Test for high-dimensional sparse regression for extreme phenotype sampling data.
 #'
-#' This function tests the effects of predictors modelled jointly for high-dimensional extreme phenotype sampling data.
+#' This function tests the effects of predictors modelled jointly for high-dimensional extreme phenotype sampling data. The result returns 3 items: pvals, beta, and sigma. pvals contains score, wald, and partial likelihood ratio test p-value. beta is the point estimate of the regression coefficient. sigma is the estimate of random noise.
 #' @param X Matrix of predictors. Required.
 #' @param Y Trait values. Required.
 #' @param c1 Right censored point. Required.
@@ -222,6 +222,6 @@ epsLasso=function(X, Y, c1, c2, lam0=NULL, m_w="lso", scal.x=TRUE, center.y=TRUE
 
 	p_val=trunAllTest_parallel(A, Y, c1, c2, beta_e, sigma_e, m_w=m_w, paral=paral, paral_n=paral_n, resol=resol, tol=tol, maxTry=maxTry, verbose = verbose)
 
-	return(list(pvals=p_val,sigma=sigma_e))
+	return(list(pvals=p_val, beta=beta_e, sigma=sigma_e))
 	
 }

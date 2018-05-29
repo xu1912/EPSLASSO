@@ -38,7 +38,7 @@ epsLasso(X, Y, c1, c2, lam0 = NULL, m_w = "lso", scal.x = TRUE,
 \item{verbose}{Print debugging info or not.}
 }
 \description{
-This function tests the effects of predictors modelled jointly for high-dimensional extreme phenotype sampling data.
+This function tests the effects of predictors modelled jointly for high-dimensional extreme phenotype sampling data. The result returns 3 items: pvals, beta, and sigma. pvals contains score, wald, and partial likelihood ratio test p-value. beta is the point estimate of the regression coefficient. sigma is the estimate of random noise.
 }
 \examples{
 library(mvtnorm)
