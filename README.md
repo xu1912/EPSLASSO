@@ -29,3 +29,6 @@ Before the installation, check the required packages:
       mvtnorm (>= 1.0-3),
       
       methods (>= 3.2).
+
+## Tutorial
+The main function of this package is epsLasso(X, Y, c1, c2), where X is the matrix of predictors with each row represents an individual; Y is the phenotypic value; c1 is the right censored phenotypic value; c2 is the left censored phenotypic value. (to be continued)
