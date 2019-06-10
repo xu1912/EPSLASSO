@@ -3,14 +3,8 @@ Title: Sparse Regression for data under extreme phenotype sampling
 Version: 0.0.0.9000
 Authors@R: person("Chao", "Xu", email = "cxu2@tulane.edu", role = c("aut", "cre"))
 Description: Methods for the regression and testing for low- and high-dimensional extreme sampling data.
-Depends: R (>= 3.2.0),MASS (>= 7.2-1)
-Imports: glmnet(>= 2.0-5),
-		 doParallel (>= 1.0.1),
-		 flare (>= 1.5.0),
-		 foreach (>= 1.4.0),
-		 clime (>= 0.4.1),
-		 mvtnorm (>= 1.0-3),
-		 methods (>= 3.2)
+Depends: R (>= 3.2.0), MASS (>= 7.2-1)
+Imports: glmnet(>= 2.0-5), doParallel (>= 1.0.1), flare (>= 1.5.0), foreach (>= 1.4.0), clime (>= 0.4.1), mvtnorm (>= 1.0-3), methods (>= 3.2)
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
