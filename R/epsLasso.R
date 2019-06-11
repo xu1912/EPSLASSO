@@ -190,7 +190,7 @@ epsLasso=function(X, Y, c1, c2, lam0=NULL, m_w="lso", scal.x=TRUE, center.y=TRUE
 		lambda_e=res_eps$lambda
 		if(sum(beta_e!=0)>0 & sum(beta_e!=0)<(nX-1)){
 			eps_fit=tryCatch(lm_eps(Y~A[,which(beta_e!=0)]-1,c1,c2), error=function(e){NULL})
-			if(!is.na(eps_fit)){
+			if(length(eps_fit)>0){
 				beta_e[which(beta_e!=0)]=eps_fit$coef
 				sigma_e=eps_fit$sigma
 			}
@@ -215,7 +215,7 @@ epsLasso=function(X, Y, c1, c2, lam0=NULL, m_w="lso", scal.x=TRUE, center.y=TRUE
 		lambda_e=out_eps[[which(ebic==min(ebic))[1]]]$lambda
 		if(sum(beta_e!=0)>0 & sum(beta_e!=0)<(nX-1)){
 			eps_fit=tryCatch(lm_eps(Y~A[,which(beta_e!=0)]-1,c1,c2), error=function(e){NULL})
-			if(!is.na(eps_fit)){
+			if(length(eps_fit)>0){
 				beta_e[which(beta_e!=0)]=eps_fit$coef
 				sigma_e=eps_fit$sigma
 			}
