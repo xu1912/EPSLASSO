@@ -1,6 +1,6 @@
 Package: EPSLASSO
 Title: Sparse Regression for data under extreme phenotype sampling
-Version: 0.0.0.9000
+Version: 1.0.0.0000
 Authors@R: person("Chao", "Xu", email = "cxu2@tulane.edu", role = c("aut", "cre"))
 Description: Methods for the regression and testing for low- and high-dimensional extreme sampling data.
 Depends: R (>= 3.2.0), MASS (>= 7.2-1)
