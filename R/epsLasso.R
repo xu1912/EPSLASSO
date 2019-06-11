@@ -65,7 +65,9 @@ epsLasso=function(X, Y, c1, c2, lam0=NULL, m_w="lso", scal.x=TRUE, center.y=TRUE
 		c1=c1-y_mu;
 		c2=c2-y_mu;
 	}
-
+	    
+	A=A[order(Y),]
+	Y=Y[order(Y)]
 	nX=nrow(A)
 	pX=ncol(A)
 
