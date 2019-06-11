@@ -160,7 +160,6 @@ epsLasso=function(X, Y, c1, c2, lam0=NULL, m_w="lso", scal.x=TRUE, center.y=TRUE
 			lambda_e=res_eps$lambda
 	}
 	
-
 	if(paral==T){
 		if(is.na(paral_n)){
 			cl <- parallel::makeCluster(parallel::detectCores() - 1)
