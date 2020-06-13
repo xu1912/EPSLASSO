@@ -9,6 +9,7 @@
 #' @param m_w Methods used to estimate W matrix. Default is "lso" for LASSO solution using glmnet. Another method is "dzg" for Danzig-type estimator.
 #' @param scal.x Scale matrix X or not. Default is TRUE.
 #' @param center.y Center Y or not. Default is TRUE.
+#' @param mu.y Specify sample mean if data is from asymmetrical sampling. Default is average of Y.
 #' @param paral Parallel computing indicator. Default is FALSE, not using parallel.
 #' @param paral_n Number of cores that are used for parallel computing. Default is NULL. When paral is TRUE, default is the number of system available cores - 1.
 #' @param resol The refining step when m_w="dzg". Default is 1.3. A large resol results in faster convergence speed, but rough solutions.
