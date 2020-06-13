@@ -47,7 +47,7 @@
 #' res
 #'
 
-epsLasso=function(X, Y, c1, c2, lam0=NULL, m_w="lso", scal.x=TRUE, center.y=TRUE, paral=FALSE, paral_n=NULL, resol=1.3, tol=1e-3, maxTry=10, verbose = TRUE){
+epsLasso=function(X, Y, c1, c2, lam0=NULL, m_w="lso", scal.x=TRUE, center.y=TRUE, mu.y=NA, paral=FALSE, paral_n=NULL, resol=1.3, tol=1e-3, maxTry=10, verbose = TRUE){
 
 	try(if (missing(X) || missing(Y) || missing(c1) || missing(c2) ) stop('\n Inputs: X, Y, c1 and c2 should be specified!\n'))
 	
@@ -60,7 +60,11 @@ epsLasso=function(X, Y, c1, c2, lam0=NULL, m_w="lso", scal.x=TRUE, center.y=TRUE
 	}
 	
 	if (center.y){
-		y_mu=mean(Y);
+		if(is.na(mu.y)){
+			y_mu=mean(Y);
+		}else{
+			y_mu=mu.y;
+		}
 		Y=Y-y_mu;
 		c1=c1-y_mu;
 		c2=c2-y_mu;
