@@ -147,7 +147,7 @@ trunAllTest_parallel=function(A, Y, c1, c2, beta_e, sigma, m_w="lso", paral=FALS
 					F12<-F2 + F1
 					l_altn=nX/2*log(2*pi*sigma^2) + sum(Axy^2)/(2*sigma^2) + sum(log(F12))
 
-					tmp   = -2*(l_altn-l_null)
+					tmp   = -2*(l_null-l_altn)
 					pval_plr  = 1-pchisq(tmp,1)
 
 					return( data.frame(pval_score, pval_wald, pval_plr) )
